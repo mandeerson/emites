@@ -13,6 +13,7 @@ public class Initializer {
     public static void main(String[] args) throws IOException {
         IoAcceptor acceptor = Listener.create().start(9090);
 
+        Spark.port(4567);
         Spark.staticFileLocation("/static");
         Spark.get("/", MetricsController.metrics(acceptor));
     }

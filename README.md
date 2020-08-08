@@ -23,6 +23,7 @@ public class Initializer {
     public static void main(String[] args) throws IOException {
         IoAcceptor acceptor = Listener.create().start(9090);
 
+        Spark.port(4567);
         Spark.staticFileLocation("/static");
         Spark.get("/", MetricsController.metrics(acceptor));
     }
@@ -31,12 +32,25 @@ public class Initializer {
 
 ```
 
+## Run
+
+- Run `Initializer` class
+- If ports are in use, you can change in `Initializer` class
+- Open browser and acess http://localhost:4567/
+- Use some TCP client like PacketSender (https://packetsender.com/) to request movies
+- You can use some those examples
+
+```sh
+8:Avengers
+4:Cube
+6:Marvel
+```
 
 ## Features
 - Java TCP server for handle incoming messages
 - Java Http server for dashboard information
 - A Scraper to request some movies from IMDB
 
-##Images
+## Images
 
 ![Dashboard](/dashboard.png?raw=true "Dashboard")
