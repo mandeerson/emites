@@ -18,7 +18,7 @@ public class ProcessorTest {
     public void processAvengersQueryResponse() {
         ProtocolCodecSession session = new ProtocolCodecSession();
         Processor processor = new Processor(session, "Avengers");
-        Assert.assertEquals("57:Os Vingadores da Costa Oeste\nThe Avengers: Os Vingadores\n", processor.searchMovies());
+        Assert.assertEquals("41:Avengers: United They Stand\nThe Avengers\n", processor.searchMovies());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ProcessorTest {
     public void processCubeQueryResponse() {
         ProtocolCodecSession session = new ProtocolCodecSession();
         Processor processor = new Processor(session, "Cube");
-        Assert.assertEquals("10:Cube\nCubo\n", processor.searchMovies());
+        Assert.assertEquals("10:Cube\nCube\n", processor.searchMovies());
     }
 
     @Test

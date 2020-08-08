@@ -23,7 +23,7 @@ public class Scraper {
     public static List<Movie> search(String query) {
         try {
             String search = "https://www.imdb.com/find?q=" + URLEncoder.encode(query, "UTF-8");
-            HttpResponse<String> response = Unirest.get(search).asString();
+            HttpResponse<String> response = Unirest.get(search).header("accept-language", "en-US,en").asString();
             if (response.getStatus() == HttpStatus.SC_OK) {
                 Pattern pattern = Pattern.compile("\"result_text\"> <a href=\"/title/tt([0-9]*)/(.*?)\" >(.*?)</a>");
                 Matcher matcher = pattern.matcher(response.getBody());
