@@ -1,13 +1,15 @@
 package br.com.reips.emites.server;
 
 import java.util.List;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.reips.emites.constants.Variables;
+import br.com.reips.emites.constants.Constants;
+import br.com.reips.emites.model.Search;
 import br.com.reips.emites.scrapper.Movie;
 import br.com.reips.emites.scrapper.Scraper;
 
@@ -15,11 +17,11 @@ public class Processor implements Runnable {
     public static final Logger LOGGER = LoggerFactory.getLogger(Processor.class);
 
     private IoSession session;
-    private String query;
+    private Search search;
 
-    public Processor(IoSession session, String query) {
+    public Processor(IoSession session, Search search) {
         this.session = session;
-        this.query = query;
+        this.search = search;
     }
 
     @Override
@@ -27,10 +29,14 @@ public class Processor implements Runnable {
         session.write(searchMovies());
     }
 
+    @SuppressWarnings("unchecked")
     protected String searchMovies() {
-        List<Movie> search = Scraper.search(query);
-        LOGGER.info("{}: << Found {} movies for query: {}", session.getAttribute(Variables.LOGGER), search.size(), query);
-        String movies = search.stream().map(Movie::getTitle).collect(Collectors.joining("\n", "", "\n"));
+        List<Movie> response = Scraper.search(search.getQuery());
+        search.setMovies(response);
+        ((TreeSet<Search>) session.getAttribute(Constants.SEARCHES)).add(search);
+
+        LOGGER.info("{}: << Found {} movies for query: {}", session.getAttribute(Constants.LOGGER), response.size(), search.getQuery());
+        String movies = response.stream().map(Movie::getTitle).collect(Collectors.joining("\n", "", "\n"));
         return String.format("%s:%s", movies.length(), movies);
     }
 

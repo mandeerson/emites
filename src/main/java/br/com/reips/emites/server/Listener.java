@@ -16,9 +16,11 @@ import ch.qos.logback.classic.Logger;
 
 public class Listener {
 
-    private static final Integer PORT = 9090;
+    public static Listener create() {
+        return new Listener();
+    }
 
-    public IoAcceptor start() throws IOException {
+    public IoAcceptor start(Integer port) throws IOException {
         Logger minaLogger = (Logger) LoggerFactory.getLogger("org.apache.mina");
         if (minaLogger != null) {
             minaLogger.setLevel(Level.OFF);
@@ -28,7 +30,7 @@ public class Listener {
         acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new StringCodecFactory()));
         acceptor.setHandler(new Handler());
         acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, (int) TimeUnit.MINUTES.toSeconds(10));
-        acceptor.bind(new InetSocketAddress(PORT));
+        acceptor.bind(new InetSocketAddress(port));
         return acceptor;
     }
 

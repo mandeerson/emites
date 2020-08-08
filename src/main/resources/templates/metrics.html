@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Title</title>
+		
+		<meta http-equiv="refresh" content="30" >
+		
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		
+    	<link href="/css/main.css" rel="stylesheet" />
+		
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="dbox dbox--color-1">
+						<div class="dbox__icon">
+							<i class="glyphicon glyphicon-download"></i>
+						</div>
+						<div class="dbox__body">
+							<span class="dbox__count" th:text="${statistics.getReadBytes()}">0</span>
+							<span class="dbox__title">Read bytes</span>
+						</div>
+						 			
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="dbox dbox--color-2">
+						<div class="dbox__icon">
+							<i class="glyphicon glyphicon-user"></i>
+						</div>
+						<div class="dbox__body">
+							<span class="dbox__count" th:text="${acceptor.getManagedSessionCount()}">0</span>
+							<span class="dbox__title">Connected clients</span>
+						</div>
+									
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="dbox dbox--color-3">
+						<div class="dbox__icon">
+							<i class="glyphicon glyphicon-upload"></i>
+						</div>
+						<div class="dbox__body">
+							<span class="dbox__count" th:text="${statistics.getWrittenBytes()}">0</span>
+							<span class="dbox__title">Written bytes</span>
+						</div>
+						 			
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div th:replace="~{fragments/infos :: clients}"></div>
+			</div>
+		</div>
+	</body>
+</html>

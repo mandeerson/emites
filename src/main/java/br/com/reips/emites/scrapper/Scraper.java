@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 
-public class Scraper {
+public abstract class Scraper {
     public static final Logger LOGGER = LoggerFactory.getLogger(Scraper.class);
 
     public static List<Movie> search(String query) {

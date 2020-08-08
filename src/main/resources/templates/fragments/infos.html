@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" /> 
+		
+	</head>
+	<body> 
+	    <div th:fragment="clients">
+    		<link href="/css/client.css" rel="stylesheet" />
+    	
+	    	<div class="courses-container" th:each="session : ${metrics.getSessions()}">
+				<div class="course">
+					<div class="course-preview">
+						<h6>ID <span th:text="${session.getSession().getId()}">1</span></h6>
+						<h2><span th:text="${session.getSession().getAttribute(@br.com.reips.emites.constants.Constants@REMOTE_IP)}">192.0.0.0</span> (<span th:text="${session.getSession().getAttribute(@br.com.reips.emites.constants.Constants@REMOTE_PORT)}">0000</span>)</h2>
+					</div>
+					<div class="course-info">
+						<div class="progress-container">
+							<span class="progress-text">
+								<span th:text="${100 * session.getSearches().size() / metrics.getSearches()}">None</span>% of all searches
+							</span>
+						</div>
+						<h6><span th:text="${session.getSearches().size()}">1</span> searches</h6>
+						<div th:each="search : ${session.getSearches()}">
+							<h2 th:text="${search.getQuery()}">None</h2>
+						
+							<h6 th:each="movie : ${search.getMovies()}">
+								&rarr; <span th:text="${movie.getTitle()}">None</span>
+							</h6>
+						</div> 
+					</div>
+				</div>
+			</div>
+	    </div>
+		<div th:fragment="written">Written</div>
+		<div th:fragment="read">Read</div>
+	</body>
+</html>

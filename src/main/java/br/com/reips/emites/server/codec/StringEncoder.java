@@ -9,7 +9,7 @@ import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.reips.emites.constants.Variables;
+import br.com.reips.emites.constants.Constants;
 
 public class StringEncoder implements ProtocolEncoder {
     public static final Logger LOGGER = LoggerFactory.getLogger(StringEncoder.class);
@@ -19,7 +19,7 @@ public class StringEncoder implements ProtocolEncoder {
         final String msg = (String) message;
         byte[] data = msg.getBytes();
 
-        LOGGER.info("{}: >> TX: {}", session.getAttribute(Variables.LOGGER), Arrays.toString(data));
+        LOGGER.info("{}: >> TX: {}", session.getAttribute(Constants.LOGGER), Arrays.toString(data));
 
         final IoBuffer buf = IoBuffer.allocate(data.length);
         buf.setAutoExpand(false);
@@ -30,7 +30,7 @@ public class StringEncoder implements ProtocolEncoder {
 
     @Override
     public void dispose(IoSession session) throws Exception {
-        session.removeAttribute(Variables.ENCODER);
+        session.removeAttribute(Constants.ENCODER);
     }
 
 }

@@ -4,18 +4,17 @@ import java.io.IOException;
 
 import org.apache.mina.core.service.IoAcceptor;
 
+import br.com.reips.emites.controller.MetricsController;
 import br.com.reips.emites.server.Listener;
+import spark.Spark;
 
 public class Initializer {
 
     public static void main(String[] args) throws IOException {
-        Listener listener = new Listener();
+        IoAcceptor acceptor = Listener.create().start(9090);
 
-        IoAcceptor start = listener.start();
-        while (start.isActive()) {
-            // RUN
-        }
-
+        Spark.staticFileLocation("/static");
+        Spark.get("/", MetricsController.metrics(acceptor));
     }
 
 }

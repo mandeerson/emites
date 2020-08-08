@@ -9,7 +9,8 @@ import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.reips.emites.constants.Variables;
+import br.com.reips.emites.constants.Constants;
+import br.com.reips.emites.model.Search;
 
 public class StringDecoder extends CumulativeProtocolDecoder {
     public static final Logger LOGGER = LoggerFactory.getLogger(StringDecoder.class);
@@ -38,9 +39,9 @@ public class StringDecoder extends CumulativeProtocolDecoder {
 
                 byte[] data = Arrays.copyOfRange(buffer, startQuery, endQuery);
 
-                LOGGER.info("{}: << {}", session.getAttribute(Variables.LOGGER), Arrays.toString(data));
+                LOGGER.info("{}: << {}", session.getAttribute(Constants.LOGGER), Arrays.toString(data));
 
-                out.write(new String(data));
+                out.write(new Search(new String(data)));
                 in.position(initPosition + endQuery);
                 return in.position() != limit;
             }
