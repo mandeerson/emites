@@ -13,7 +13,7 @@ public class Initializer {
 
         IoAcceptor start = listener.start();
         while (start.isActive()) {
-            // TESTE
+            // RUN
         }
 
     }
