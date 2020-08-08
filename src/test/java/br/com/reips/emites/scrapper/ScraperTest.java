@@ -16,7 +16,7 @@ public class ScraperTest {
         assertEquals("Avengers: United They Stand", first.getTitle());
 
         Movie second = result.get(1);
-        assertEquals("The Avengers: Os Vingadores", second.getTitle());
+        assertEquals("The Avengers", second.getTitle());
     }
 
     @Test

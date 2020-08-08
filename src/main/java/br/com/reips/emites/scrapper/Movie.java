@@ -15,10 +15,6 @@ public class Movie {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     @Override
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this);

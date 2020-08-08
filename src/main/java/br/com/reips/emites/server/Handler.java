@@ -23,7 +23,7 @@ public class Handler extends IoHandlerAdapter {
 
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-        // TODO: Exception
+        LOGGER.error("{}: Exception caught", session.getAttribute(Variables.LOGGER), cause);
     }
 
     @Override
