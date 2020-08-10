@@ -48,7 +48,7 @@ public class StringDecoder extends CumulativeProtocolDecoder {
 
                 byte[] data = Arrays.copyOfRange(buffer, startQuery, endQuery);
 
-                LOGGER.info("{}: << {}", session.getAttribute(Constants.LOGGER), Arrays.toString(data));
+                LOGGER.info("{}: << RX: {}", session.getAttribute(Constants.LOGGER), Arrays.toString(data));
 
                 out.write(new Search(new String(data)));
                 in.position(initPosition + endQuery);
