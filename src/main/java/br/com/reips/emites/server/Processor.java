@@ -18,26 +18,35 @@ public class Processor implements Runnable {
 
     private IoSession session;
     private Search search;
+    private List<Movie> response;
 
+    @SuppressWarnings("unchecked")
     public Processor(IoSession session, Search search) {
         this.session = session;
         this.search = search;
+
+        ((TreeSet<Search>) session.getAttribute(Constants.SEARCHES)).add(search);
     }
 
     @Override
     public void run() {
-        session.write(searchMovies());
+        response = Scraper.search(search.getQuery());
+        LOGGER.info("{}: << Found {} movies for query: {}", session.getAttribute(Constants.LOGGER), response.size(), search.getQuery());
+        session.write(processResponse());
     }
 
-    @SuppressWarnings("unchecked")
-    protected String searchMovies() {
-        List<Movie> response = Scraper.search(search.getQuery());
+    protected String processResponse() {
         search.setMovies(response);
-        ((TreeSet<Search>) session.getAttribute(Constants.SEARCHES)).add(search);
-
-        LOGGER.info("{}: << Found {} movies for query: {}", session.getAttribute(Constants.LOGGER), response.size(), search.getQuery());
         String movies = response.stream().map(Movie::getTitle).collect(Collectors.joining("\n", "", "\n"));
         return String.format("%s:%s", movies.length(), movies);
+    }
+
+    public void setResponse(List<Movie> response) {
+        this.response = response;
+    }
+
+    public List<Movie> getResponse() {
+        return response;
     }
 
 }
