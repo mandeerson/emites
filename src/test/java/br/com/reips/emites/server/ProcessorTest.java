@@ -26,7 +26,7 @@ public class ProcessorTest {
         ProtocolCodecSession session = new ProtocolCodecSession();
         session.setAttribute(Constants.SEARCHES, new TreeSet<>());
         Processor processor = new Processor(session, new Search("Avengers"));
-        Assert.assertEquals("3284:A Daughter's Revenge\n" +
+        Assert.assertEquals("3286:A Daughter's Revenge\n" +
                 "A Soldier's Revenge\n" +
                 "A Vingança do Águia\n" +
                 "Alien Avengers\n" +
@@ -59,7 +59,6 @@ public class ProcessorTest {
                 "Avengers\n" +
                 "Avengers\n" +
                 "Avengers #1\n" +
-                "Avengers #200\n" +
                 "Avengers 2\n" +
                 "Avengers Assemble\n" +
                 "Avengers Assemble!\n" +
@@ -84,6 +83,7 @@ public class ProcessorTest {
                 "Baby Avengers\n" +
                 "Berrenger's\n" +
                 "Bikini Avengers\n" +
+                "Blue Avengers\n" +
                 "Burka Avenger\n" +
                 "Captain America: Civil War\n" +
                 "Captain America: The First Avenger\n" +
@@ -93,6 +93,7 @@ public class ProcessorTest {
                 "Citizen Toxie: The Toxic Avenger IV\n" +
                 "Combate Mortal\n" +
                 "Dark Avenger\n" +
+                "Dark Avengers\n" +
                 "Deadly Scavengers\n" +
                 "Die Hard with a Vengeance\n" +
                 "Ghost Rider: Spirit of Vengeance\n" +
@@ -112,15 +113,14 @@ public class ProcessorTest {
                 "Mask of the Avenger\n" +
                 "Mister X\n" +
                 "Naked Avenger\n" +
+                "New Avengers\n" +
                 "Next Avengers: Heroes of Tomorrow\n" +
                 "Ninja Operation 6: Champion on Fire\n" +
-                "Non-Avengers\n" +
                 "Novgorodtsy\n" +
                 "Os Punhais do Vingador\n" +
                 "Os Vingadores Mascarados\n" +
                 "Passengers\n" +
                 "Passengers\n" +
-                "Pet Avengers\n" +
                 "Revenge Ride\n" +
                 "Revenger\n" +
                 "Revengers Tragedy\n" +
@@ -131,9 +131,6 @@ public class ProcessorTest {
                 "Scavenger\n" +
                 "Scavenger Hunt\n" +
                 "Scavenger Killers\n" +
-                "Scavenger Scan\n" +
-                "Scavengers\n" +
-                "Scavengers\n" +
                 "Scavengers\n" +
                 "Scavengers\n" +
                 "Scavengers\n" +
@@ -180,6 +177,11 @@ public class ProcessorTest {
                 "The Avengers\n" +
                 "The Avengers\n" +
                 "The Avengers\n" +
+                "The Avengers\n" +
+                "The Avengers\n" +
+                "The Avengers\n" +
+                "The Avengers\n" +
+                "The Avengers #1\n" +
                 "The Avengers #1\n" +
                 "The Avengers: Earth's Mightiest Heroes\n" +
                 "The Avenging\n" +
@@ -193,8 +195,6 @@ public class ProcessorTest {
                 "The Messengers\n" +
                 "The Messengers\n" +
                 "The New Avengers\n" +
-                "The PAvengers\n" +
-                "The Red Avenger\n" +
                 "The Revenge\n" +
                 "The Revenge\n" +
                 "The Revenger\n" +
@@ -276,8 +276,8 @@ public class ProcessorTest {
                 "Cube\n" +
                 "Cube\n" +
                 "Cube Bros\n" +
-                "Cube Fountain\n" +
                 "Cube Game\n" +
+                "Cube Machine\n" +
                 "Cube Quest\n" +
                 "Cube Runner\n" +
                 "Cube Season\n" +
@@ -309,7 +309,6 @@ public class ProcessorTest {
                 "Cubes\n" +
                 "Cube²: Hypercube\n" +
                 "Cubicles\n" +
-                "Cubing Out\n" +
                 "Cubing a Round\n" +
                 "Cubs\n" +
                 "Cubs\n" +
@@ -318,10 +317,11 @@ public class ProcessorTest {
                 "Dark Mind\n" +
                 "Death by Cube\n" +
                 "Do You Believe?\n" +
+                "Doug Cubed\n" +
+                "Eating in Cubes\n" +
                 "Farewell My Concubine\n" +
                 "Fear Cubed\n" +
                 "Friday: An Indroduction by Ice Cube\n" +
-                "Friend Cube\n" +
                 "Gelatinous Cube\n" +
                 "Gleaming the Cube\n" +
                 "God is a Cube: Programming Robot Cubes\n" +
@@ -387,12 +387,12 @@ public class ProcessorTest {
                 "Ruby Cubed\n" +
                 "Scrubs\n" +
                 "Scrubs: Interns\n" +
+                "Story of a Cube\n" +
                 "Stuber\n" +
                 "Subspecies\n" +
                 "Succubus\n" +
                 "Sugar Cube\n" +
                 "Sugar Cube\n" +
-                "Sugar Cubes\n" +
                 "Sugar Cubes\n" +
                 "Taming of the Cube\n" +
                 "Tariq's Cube\n" +
@@ -420,7 +420,6 @@ public class ProcessorTest {
                 "The Cubing\n" +
                 "The Glass Cube\n" +
                 "The House of Small Cubes\n" +
-                "The Illusionist's Cube\n" +
                 "The Incubus\n" +
                 "The Kubrick's Cube\n" +
                 "The Magic Cube\n" +
@@ -431,6 +430,7 @@ public class ProcessorTest {
                 "The Substitute\n" +
                 "The Substitute\n" +
                 "The Sugar Cubes\n" +
+                "The Votive Cube\n" +
                 "This Is Not a Cube\n" +
                 "Time Cube\n" +
                 "Time Cube\n" +
