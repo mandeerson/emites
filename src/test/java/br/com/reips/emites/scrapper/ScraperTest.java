@@ -11,23 +11,23 @@ public class ScraperTest {
     @Test
     public void searchAvengersMovies() {
         List<Movie> result = Scraper.search("Avengers");
-        assertEquals(2, result.size());
+        assertEquals(200, result.size());
         Movie first = result.get(0);
-        assertEquals("Avengers: United They Stand", first.getTitle());
+        assertEquals("A Daughter's Revenge", first.getTitle());
 
         Movie second = result.get(1);
-        assertEquals("The Avengers", second.getTitle());
+        assertEquals("A Soldier's Revenge", second.getTitle());
     }
 
     @Test
     public void searchCubeMovies() {
         List<Movie> result = Scraper.search("Cube");
-        assertEquals(2, result.size());
+        assertEquals(200, result.size());
         Movie first = result.get(0);
-        assertEquals("Cube", first.getTitle());
+        assertEquals("A Cube & a Button", first.getTitle());
 
         Movie second = result.get(1);
-        assertEquals("Cube", second.getTitle());
+        assertEquals("A Cube of Sugar", second.getTitle());
     }
 
     @Test

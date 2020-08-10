@@ -44,6 +44,22 @@ public class StringDecoderTest {
     }
 
     @Test
+    public void decodeQuery10Chars() throws Exception {
+        StringDecoder decoder = new StringDecoder();
+        ProtocolCodecSession session = new ProtocolCodecSession();
+
+        decoder.decode(session, IoBuffer.wrap("12:Circumstance".getBytes()), session.getDecoderOutput());
+        Queue<Object> decoderOutputQueue = session.getDecoderOutputQueue();
+
+        Assert.assertEquals(1, decoderOutputQueue.size());
+
+        Object poll = decoderOutputQueue.poll();
+        Assert.assertEquals(Search.class, poll.getClass());
+        Search search = (Search) poll;
+        Assert.assertEquals("Circumstance", search.getQuery());
+    }
+
+    @Test
     public void decodeMultipleQuery() throws Exception {
         StringDecoder decoder = new StringDecoder();
         ProtocolCodecSession session = new ProtocolCodecSession();

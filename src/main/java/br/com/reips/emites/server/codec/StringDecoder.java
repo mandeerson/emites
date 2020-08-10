@@ -24,8 +24,17 @@ public class StringDecoder extends CumulativeProtocolDecoder {
             final byte[] buffer = new byte[remaining];
             in.get(buffer, 0, remaining);
 
-            int size = Character.getNumericValue(buffer[0]);
-            if (size > remaining - 2) {
+            int sizeLength = 1;
+            for (int i = 0; i < buffer.length; i++) {
+                byte buff = buffer[i];
+                if (buff == (byte) 58) {
+                    sizeLength = i;
+                    break;
+                }
+            }
+            byte[] sizeBytes = Arrays.copyOfRange(buffer, 0, sizeLength);
+            int size = Integer.parseInt(new String(sizeBytes));
+            if (size > remaining - sizeBytes.length - 1) {
                 // Need more data
                 in.position(0);
                 return false;
@@ -33,7 +42,7 @@ public class StringDecoder extends CumulativeProtocolDecoder {
 
             if (size <= remaining - 2) {
                 // One or more queries
-                int difference = buffer.length - size - 2;
+                int difference = buffer.length - size - sizeBytes.length - 1;
                 int startQuery = buffer.length - difference - size;
                 int endQuery = buffer.length - difference;
 
@@ -43,6 +52,7 @@ public class StringDecoder extends CumulativeProtocolDecoder {
 
                 out.write(new Search(new String(data)));
                 in.position(initPosition + endQuery);
+                // If has remaining bytes, process again
                 return in.position() != limit;
             }
         }
